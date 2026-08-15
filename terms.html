@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Hatua</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0B1120;
+            --navy-light: #131B2E;
+            --sky-blue: #38BDF8;
+            --coral: #FF6B6B;
+            --gold-start: #FFB347;
+            --gold-end: #FF6723;
+            --cyan-glow: #22D3EE;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --glass-bg: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11,17,32,0.85);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--sky-blue), var(--gold-start), var(--coral));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--navy);
+        }
+
+        .nav-brand-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--sky-blue), var(--gold-start));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--sky-blue); }
+
+        .nav-links a.active { color: var(--sky-blue); }
+
+        .page-hero {
+            padding: 140px 40px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .page-hero .orb-1 { width: 400px; height: 400px; background: var(--sky-blue); top: -100px; left: -100px; }
+        .page-hero .orb-2 { width: 300px; height: 300px; background: var(--gold-start); bottom: -80px; right: -80px; }
+
+        .page-hero .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--sky-blue);
+        }
+
+        .page-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .page-hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--sky-blue), var(--gold-start), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .content-card {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 48px;
+            border-radius: 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-card h2:first-child { margin-top: 0; }
+
+        .content-card h2 .section-icon {
+            font-size: 20px;
+        }
+
+        .content-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .content-card ul {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .content-card ul li { margin-bottom: 6px; }
+
+        .content-card .highlight {
+            color: var(--sky-blue);
+            font-weight: 600;
+        }
+
+        .content-card .highlight-gold {
+            color: var(--gold-start);
+            font-weight: 600;
+        }
+
+        .content-card .highlight-coral {
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+            padding-bottom: 60px;
+        }
+
+        .footer {
+            padding: 40px 40px 24px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: var(--sky-blue);
+            text-decoration: none;
+        }
+
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .page-hero { padding: 110px 20px 40px; }
+            .page-hero h1 { font-size: 28px; }
+            .content-card { padding: 28px 20px; margin: 0 16px 40px; }
+            .content-card h2 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo">H</div>
+            <span class="nav-brand-text">Hatua</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="terms.html" class="active">Terms</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <span class="badge">Legal</span>
+        <h1>Terms & <span class="gradient-text">Conditions</span></h1>
+        <p>Please read these terms carefully before using Hatua.</p>
+    </section>
+
+    <div class="content-card">
+    <h2>1. Acceptance of Terms</h2>
+    <p>By downloading, accessing, or using the Hatua mobile application ("App"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree with any part of these Terms, you must not use the App. These Terms constitute a legally binding agreement between you and <span class="highlight">Hatua Ltd.</span></p>
+
+    <h2>2. Eligibility</h2>
+    <p>You must be at least <span class="highlight-gold">13 years of age</span> to create an account and use Hatua. If you are under 18, you represent that your parent or legal guardian has reviewed and agreed to these Terms on your behalf. Users between 13 and 17 may only use the App under parental supervision as required by applicable law.</p>
+
+    <h2>3. User Accounts</h2>
+    <p>To access certain features, you must register for an account. You agree to:</p>
+    <ul>
+        <li>Provide <span class="highlight">accurate, current, and complete</span> information during registration.</li>
+        <li>Maintain and promptly update your account information to keep it accurate.</li>
+        <li>Maintain the security and confidentiality of your login credentials.</li>
+        <li>Accept responsibility for all activities that occur under your account.</li>
+        <li>Notify us immediately of any unauthorized use of your account.</li>
+    </ul>
+
+    <h2>4. App Usage & Conduct</h2>
+    <p>Hatua provides a gamified educational platform including <span class="highlight-coral">Solo Practice</span>, <span class="highlight-coral">Live Battles</span>, leaderboards, and study tools. You agree NOT to:</p>
+    <ul>
+        <li>Use the App for any unlawful purpose or in violation of any applicable regulations.</li>
+        <li>Cheat, exploit bugs, or use third-party tools to manipulate scores, streaks, or leaderboard rankings.</li>
+        <li>Harass, bully, or intimidate other users during Live Battles or in any interactive feature.</li>
+        <li>Create multiple accounts to gain unfair advantages in leaderboards or battles.</li>
+        <li>Share, sell, or distribute quiz content, answers, or proprietary educational material from the App.</li>
+        <li>Reverse-engineer, decompile, or tamper with the App's source code or infrastructure.</li>
+    </ul>
+
+    <h2>5. Live Battles & Competitive Features</h2>
+    <p>Live Battles are real-time competitive quiz sessions between users. By participating, you acknowledge that:</p>
+    <ul>
+        <li>Matchmaking is automated and based on skill level; outcomes may vary.</li>
+        <li>Network disruptions may affect battle outcomes; we are not liable for connection issues.</li>
+        <li>Leaderboard rankings are final as calculated by our systems and may not be contested.</li>
+        <li>We reserve the right to <span class="highlight-coral">disqualify</span> users found cheating or manipulating results.</li>
+    </ul>
+
+    <h2>6. Passes & Payments</h2>
+    <p>Hatua offers access passes (such as daily, weekly, or monthly passes) that grant access to premium features for a fixed duration. By purchasing a pass:</p>
+    <ul>
+        <li>You authorize a one-time charge for the selected pass at the then-current price. Passes do not auto-renew and will expire automatically at the end of the specified duration unless manually repurchased.</li>
+        <li>Refunds are handled per the respective store's refund policy; Hatua does not issue direct refunds.</li>
+        <li>We reserve the right to modify pricing for future pass purchases with <span class="highlight-gold">30 days' prior notice</span>.</li>
+    </ul>
+
+    <h2>7. Intellectual Property</h2>
+    <p>All content, design, logos, graphics, and software associated with Hatua are the exclusive property of <span class="highlight">Hatua Ltd.</span> and are protected by intellectual property laws. You may not:</p>
+    <ul>
+        <li>Copy, modify, or distribute any part of the App without written consent.</li>
+        <li>Use Hatua branding, logos, or trademarks without prior authorization.</li>
+        <li>Reproduce, publish, or sell any educational content accessed through the App.</li>
+    </ul>
+
+    <h2>8. Privacy & Data</h2>
+    <p>Your use of Hatua is also governed by our <a href="privacy.html" style="color: var(--sky-blue); text-decoration: none;">Privacy Policy</a>, which explains how we collect, use, and protect your personal data. By using the App, you consent to the data practices described therein.</p>
+
+    <h2>9. Disclaimers</h2>
+    <p>The App is provided on an <span class="highlight-coral">"as is" and "as available"</span> basis. We do not guarantee:</p>
+    <ul>
+        <li>That the App will be uninterrupted, error-free, or secure at all times.</li>
+        <li>That educational content is always accurate or complete; users should verify critical information independently.</li>
+        <li>Any specific results from using the App, including improved academic performance.</li>
+    </ul>
+
+    <h2>10. Account Termination</h2>
+    <p>We may suspend or terminate your account if you violate these Terms. You may also delete your account at any time by following the instructions on our <a href="delete-account.html" style="color: var(--sky-blue); text-decoration: none;">Delete Account</a> page. Upon termination:</p>
+    <ul>
+        <li>All accumulated XP, streaks, leaderboard positions, and rewards will be permanently lost.</li>
+        <li>We will delete your personal data in accordance with our Privacy Policy and applicable law.</li>
+    </ul>
+
+    <h2>11. Changes to Terms</h2>
+    <p>We may update these Terms periodically. Continued use of the App after changes are posted constitutes acceptance of the revised Terms. We will notify you of significant changes via App notification or email at least <span class="highlight-gold">15 days</span> before they take effect.</p>
+
+    <h2>12. Governing Law & Disputes</h2>
+    <p>These Terms are governed by the laws of <span class="highlight">the United Republic of Tanzania</span>. Any disputes arising from these Terms or your use of the App shall be resolved first through good-faith negotiation, and if unresolved, submitted to the competent courts of Tanzania.</p>
+
+    <h2>13. Contact Us</h2>
+    <p>If you have any questions about these Terms, please contact us at:</p>
+    <ul>
+        <li>Email: <span class="highlight">legal@hatuaapp.co.tz</span></li>
+        <li>Address: Hatua App Ltd., Dodoma, Tanzania</li>
+    </ul>
+</div>
+
+<p class="last-updated">Last updated: August 15, 2026</p>
+
+    <footer class="footer">
+        <p>2026 Hatua Ltd. All rights reserved. &middot; <a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="delete-account.html">Delete Account</a></p>
+    </footer>
+
+</body>
+</html>

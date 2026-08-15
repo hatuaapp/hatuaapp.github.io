@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Hatua</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0B1120;
+            --navy-light: #131B2E;
+            --sky-blue: #38BDF8;
+            --coral: #FF6B6B;
+            --gold-start: #FFB347;
+            --gold-end: #FF6723;
+            --cyan-glow: #22D3EE;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --glass-bg: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11,17,32,0.85);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--sky-blue), var(--gold-start), var(--coral));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--navy);
+        }
+
+        .nav-brand-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--sky-blue), var(--gold-start));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--sky-blue); }
+        .nav-links a.active { color: var(--sky-blue); }
+
+        .page-hero {
+            padding: 140px 40px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .page-hero .orb-1 { width: 400px; height: 400px; background: var(--coral); top: -100px; right: -100px; }
+        .page-hero .orb-2 { width: 300px; height: 300px; background: var(--cyan-glow); bottom: -80px; left: -80px; }
+
+        .page-hero .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--coral);
+        }
+
+        .page-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .page-hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--coral), var(--gold-start), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .content-card {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 48px;
+            border-radius: 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-card h2:first-child { margin-top: 0; }
+
+        .content-card h2 .section-icon { font-size: 20px; }
+
+        .content-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .content-card ul {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .content-card ul li { margin-bottom: 6px; }
+
+        .content-card .highlight { color: var(--sky-blue); font-weight: 600; }
+        .content-card .highlight-gold { color: var(--gold-start); font-weight: 600; }
+        .content-card .highlight-coral { color: var(--coral); font-weight: 600; }
+
+        /* Data table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 20px;
+        }
+
+        .data-table th {
+            background: rgba(56,189,248,0.1);
+            color: var(--sky-blue);
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .data-table td {
+            color: var(--text-secondary);
+            font-size: 13px;
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+        .data-table .type-label {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .type-label.essential { background: rgba(56,189,248,0.15); color: var(--sky-blue); }
+        .type-label.analytics { background: rgba(255,179,71,0.15); color: var(--gold-start); }
+        .type-label.optional { background: rgba(255,107,107,0.15); color: var(--coral); }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+            padding-bottom: 60px;
+        }
+
+        .footer {
+            padding: 40px 40px 24px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .footer p { color: var(--text-secondary); font-size: 12px; }
+        .footer a { color: var(--sky-blue); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .page-hero { padding: 110px 20px 40px; }
+            .page-hero h1 { font-size: 28px; }
+            .content-card { padding: 28px 20px; margin: 0 16px 40px; }
+            .content-card h2 { font-size: 18px; }
+            .data-table { font-size: 12px; }
+            .data-table th, .data-table td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo">H</div>
+            <span class="nav-brand-text">Hatua</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="privacy.html" class="active">Privacy</a></li>
+        </ul>
+    </nav>
+
+    <div class="content-card">
+    <h2>1. Introduction</h2>
+    <p><span class="highlight">Hatua Ltd.</span> ("we", "our", "us") is committed to protecting your personal data and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application Hatua (the "App"). This policy applies worldwide as we respect the privacy rights of all our users, including those protected by the GDPR, Tanzania's Personal Data Protection Act, and other applicable regulations.</p>
+
+    <h2>2. Information We Collect</h2>
+    <p>We collect the following categories of data to provide and improve our services:</p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Data Type</th>
+                <th>Examples</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Account Information</td>
+                <td>Name, email address, date of birth, school/institution</td>
+                <td><span class="type-label essential">Essential</span></td>
+            </tr>
+            <tr>
+                <td>Usage Data</td>
+                <td>Quiz scores, battle results, streak counts, XP earned, features used</td>
+                <td><span class="type-label essential">Essential</span></td>
+            </tr>
+            <tr>
+                <td>Device Information</td>
+                <td>Device model, OS version, app version, unique device ID</td>
+                <td><span class="type-label analytics">Analytics</span></td>
+            </tr>
+            <tr>
+                <td>Performance Data</td>
+                <td>App crash logs, load times, error reports</td>
+                <td><span class="type-label analytics">Analytics</span></td>
+            </tr>
+            <tr>
+                <td>Communication Data</td>
+                <td>Support tickets, feedback messages, survey responses</td>
+                <td><span class="type-label optional">Optional</span></td>
+            </tr>
+            <tr>
+                <td>Location Data</td>
+                <td>Country/region (approximate, for content localization)</td>
+                <td><span class="type-label optional">Optional</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. How We Use Your Data</h2>
+    <p>We use your information for the following purposes:</p>
+    <ul>
+        <li><span class="highlight">Core Services:</span> Provide, operate, and maintain the App's learning features, battles, leaderboards, and streak systems.</li>
+        <li><span class="highlight-gold">Personalization:</span> Tailor quiz difficulty, content recommendations, and study paths to your level and progress.</li>
+        <li><span class="highlight-gold">Gamification:</span> Track XP, achievements, streaks, and leaderboard rankings tied to your account.</li>
+        <li><span class="highlight-coral">Communication:</span> Send push notifications for streaks, battle results, and leaderboard updates; respond to support inquiries.</li>
+        <li><span class="highlight-coral">Analytics & Improvement:</span> Analyze usage patterns to improve features, fix bugs, and enhance user experience.</li>
+        <li><span class="highlight">Security:</span> Detect and prevent fraud, cheating, or unauthorized access to accounts.</li>
+    </ul>
+
+    <h2>4. Legal Basis for Processing</h2>
+    <p>We process your data based on the following legal grounds:</p>
+    <ul>
+        <li><span class="highlight">Contractual necessity:</span> To provide the App services you requested.</li>
+        <li><span class="highlight-gold">Legitimate interest:</span> To improve our services, ensure security, and prevent abuse.</li>
+        <li><span class="highlight-coral">Consent:</span> For optional data collection (e.g., location, marketing notifications). You may withdraw consent at any time.</li>
+        <li><span class="highlight">Legal obligation:</span> To comply with applicable laws and regulations.</li>
+    </ul>
+
+    <h2>5. Data Sharing & Third Parties</h2>
+    <p>We do <span class="highlight">NOT</span> sell your personal data. We may share data only with:</p>
+    <ul>
+        <li><span class="highlight-gold">Cloud infrastructure providers</span> (hosting, data storage) operating under strict data processing agreements.</li>
+        <li><span class="highlight-gold">Analytics providers</span> (anonymized/aggregated data only) to help us understand usage trends.</li>
+        <li><span class="highlight-coral">App stores</span> (Apple App Store, Google Play) for account verification and pass purchases.</li>
+        <li><span class="highlight">Law enforcement</span> when required by law or to protect the safety of our users.</li>
+    </ul>
+
+    <h2>6. International Data Transfers</h2>
+    <p>Your data may be processed on servers located outside your country of residence. We ensure appropriate safeguards are in place, including Standard Contractual Clauses and data processing agreements, to protect your data in compliance with applicable data protection laws.</p>
+
+    <h2>7. Data Retention</h2>
+    <p>We retain your personal data for as long as your account is active or as needed to provide services. Upon account deletion:</p>
+    <ul>
+        <li>Account data and personal information are deleted within <span class="highlight-gold">90 days</span>.</li>
+        <li>Anonymized usage data (leaderboard history, aggregated analytics) may be retained indefinitely as it no longer identifies you.</li>
+        <li>Backup copies are purged within <span class="highlight-gold">180 days</span>.</li>
+    </ul>
+
+    <h2>8. Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have the following rights:</p>
+    <ul>
+        <li><span class="highlight">Access:</span> Request a copy of your personal data.</li>
+        <li><span class="highlight">Rectification:</span> Correct inaccurate or incomplete data.</li>
+        <li><span class="highlight">Erasure:</span> Request deletion of your data ("right to be forgotten").</li>
+        <li><span class="highlight">Portability:</span> Receive your data in a structured, machine-readable format.</li>
+        <li><span class="highlight-coral">Restriction:</span> Limit how we process your data.</li>
+        <li><span class="highlight-coral">Objection:</span> Object to processing based on legitimate interest.</li>
+        <li><span class="highlight-gold">Withdraw consent:</span> Revoke previously given consent for optional data processing.</li>
+    </ul>
+    <p>To exercise any right, contact us at <span class="highlight">privacy@hatuaapp.co.tz</span>. We will respond within <span class="highlight-gold">90 days</span>.</p>
+
+    <h2>9. Data Security</h2>
+    <p>We implement industry-standard technical and organizational measures to protect your data:</p>
+    <ul>
+        <li><span class="highlight">Encryption:</span> All data in transit is encrypted via TLS 1.3; sensitive data at rest is encrypted using AES-256.</li>
+        <li><span class="highlight-gold">Access controls:</span> Strict role-based access to user data within our organization.</li>
+        <li><span class="highlight-coral">Regular audits:</span> Security assessments and penetration testing conducted quarterly.</li>
+    </ul>
+    <p>While we strive to protect your data, no system is completely secure. We encourage you to use strong passwords and protect your device.</p>
+
+    <h2>10. Children's Privacy</h2>
+    <p>Hatua is available to users aged <span class="highlight-gold">13 and above</span>. For users aged 13-17:</p>
+    <ul>
+        <li>We require parental or guardian consent before collecting personal data.</li>
+        <li>We do not display full names or contact details publicly on leaderboards or in battles.</li>
+        <li>Parents may contact us to review, modify, or delete their child's data at <span class="highlight">parents@hatuaapp.co.tz</span>.</li>
+    </ul>
+
+    <h2>11. Cookies & Tracking</h2>
+    <p>The App does not use traditional browser cookies. However, we may use:</p>
+    <ul>
+        <li><span class="highlight-gold">Device identifiers</span> for analytics and fraud prevention.</li>
+        <li><span class="highlight-coral">Push notification tokens</span> to send you streak reminders and battle invitations.</li>
+        <li><span class="highlight">In-app analytics</span> to measure feature usage and performance (via Firebase Analytics or similar).</li>
+    </ul>
+
+    <h2>12. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy periodically. We will notify you of significant changes via App notification or email at least <span class="highlight-gold">15 days</span> before they take effect. Continued use of the App after changes constitutes acceptance.</p>
+
+    <h2>13. Contact Us</h2>
+    <p>For any privacy-related questions, data requests, or concerns:</p>
+    <ul>
+        <li>Data Protection Officer: <span class="highlight">dpo@hatuaapp.co.tz</span></li>
+        <li>General inquiries: <span class="highlight">privacy@hatuaapp.co.tz</span></li>
+        <li>Postal address: Hatua App Ltd., Dodoma, Tanzania</li>
+    </ul>
+</div>
+
+<p class="last-updated">Last updated: August 15, 2026</p>
+
+    <footer class="footer">
+        <p>2026 Hatua Ltd. All rights reserved. &middot; <a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="delete-account.html">Delete Account</a></p>
+    </footer>
+
+</body>
+</html>

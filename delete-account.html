@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Hatua</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0B1120;
+            --navy-light: #131B2E;
+            --sky-blue: #38BDF8;
+            --coral: #FF6B6B;
+            --gold-start: #FFB347;
+            --gold-end: #FF6723;
+            --cyan-glow: #22D3EE;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --glass-bg: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11,17,32,0.85);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--sky-blue), var(--gold-start), var(--coral));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--navy);
+        }
+
+        .nav-brand-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--sky-blue), var(--gold-start));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--sky-blue); }
+        .nav-links a.active { color: var(--coral); }
+
+        .page-hero {
+            padding: 140px 40px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .page-hero .orb-1 { width: 400px; height: 400px; background: var(--coral); top: -100px; left: -100px; }
+        .page-hero .orb-2 { width: 300px; height: 300px; background: var(--gold-start); bottom: -80px; right: -80px; }
+
+        .page-hero .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,107,107,0.3);
+            background: rgba(255,107,107,0.1);
+            color: var(--coral);
+        }
+
+        .page-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .page-hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--coral), var(--gold-start));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Warning banner */
+        .warning-banner {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            padding: 20px 28px;
+            border-radius: 16px;
+            background: rgba(255,107,107,0.08);
+            border: 1px solid rgba(255,107,107,0.25);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .warning-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .warning-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 6px;
+        }
+
+        .warning-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Steps */
+        .steps-container {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-card {
+            padding: 28px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            border-color: var(--glass-border);
+            transform: translateX(4px);
+        }
+
+        .step-number {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-number.s1 { background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(56,189,248,0.05)); color: var(--sky-blue); }
+        .step-number.s2 { background: linear-gradient(135deg, rgba(255,179,71,0.2), rgba(255,179,71,0.05)); color: var(--gold-start); }
+        .step-number.s3 { background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(255,107,107,0.05)); color: var(--coral); }
+        .step-number.s4 { background: linear-gradient(135deg, rgba(34,211,238,0.2), rgba(34,211,238,0.05)); color: var(--cyan-glow); }
+        .step-number.s5 { background: linear-gradient(135deg, rgba(255,107,107,0.3), rgba(255,107,107,0.1)); color: var(--coral); }
+
+        .step-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .step-content .highlight { color: var(--sky-blue); font-weight: 600; }
+        .step-content .highlight-gold { color: var(--gold-start); font-weight: 600; }
+        .step-content .highlight-coral { color: var(--coral); font-weight: 600; }
+
+        /* What you lose section */
+        .loss-card {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            padding: 36px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+
+        .loss-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .loss-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .loss-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(255,107,107,0.04);
+            border: 1px solid rgba(255,107,107,0.1);
+        }
+
+        .loss-item .icon {
+            font-size: 24px;
+        }
+
+        .loss-item .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--coral);
+        }
+
+        .loss-item .desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Timeline */
+        .timeline-card {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            padding: 36px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+
+        .timeline-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 36px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--sky-blue), var(--gold-start), var(--coral));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: -36px; top: 4px;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .timeline-dot.blue { background: var(--sky-blue); color: var(--navy); }
+        .timeline-dot.gold { background: var(--gold-start); color: var(--navy); }
+        .timeline-dot.coral { background: var(--coral); color: white; }
+
+        .timeline-item h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Alternative section */
+        .alt-card {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            padding: 36px;
+            border-radius: 20px;
+            background: rgba(56,189,248,0.04);
+            border: 1px solid rgba(56,189,248,0.15);
+            text-align: center;
+        }
+
+        .alt-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .alt-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .alt-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-alt {
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-alt:hover { transform: translateY(-2px); }
+
+        .btn-alt.blue {
+            background: linear-gradient(135deg, var(--sky-blue), var(--cyan-glow));
+            color: var(--navy);
+        }
+
+        .btn-alt.blue:hover {
+            box-shadow: 0 8px 25px rgba(56,189,248,0.3);
+        }
+
+        .btn-alt.gold {
+            background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
+            color: var(--navy);
+        }
+
+        .btn-alt.gold:hover {
+            box-shadow: 0 8px 25px rgba(255,179,71,0.3);
+        }
+
+        /* Contact section */
+        .contact-card {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            padding: 36px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .contact-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .contact-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .contact-card .email {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--sky-blue);
+            margin-top: 12px;
+        }
+
+        .footer {
+            padding: 40px 40px 24px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .footer p { color: var(--text-secondary); font-size: 12px; }
+        .footer a { color: var(--sky-blue); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .page-hero { padding: 110px 20px 40px; }
+            .page-hero h1 { font-size: 28px; }
+            .steps-container, .loss-card, .timeline-card, .alt-card, .contact-card, .warning-banner { margin-left: 16px; margin-right: 16px; }
+            .loss-grid { grid-template-columns: 1fr; }
+            .step-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo">H</div>
+            <span class="nav-brand-text">Hatua</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <span class="badge">Account Action</span>
+    <h1>Delete Your <span class="gradient-text">Account</span></h1>
+    <p>We're sorry to see you go. Here's everything you need to know before proceeding.</p>
+</section>
+
+<!-- Warning -->
+<div class="warning-banner">
+    <div class="warning-text">
+        <h3>This Action Is Permanent</h3>
+        <p>Deleting your account is <strong>irreversible</strong>. All your data, progress, and achievements will be permanently erased and cannot be recovered. Please consider carefully before proceeding.</p>
+    </div>
+</div>
+
+<!-- Steps -->
+<div class="steps-container">
+    <div class="step-card">
+        <div class="step-number s1">1</div>
+        <div class="step-content">
+            <h3>Open the Hatua App</h3>
+            <p>Launch the Hatua app on your device and log in to the account you wish to delete.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number s2">2</div>
+        <div class="step-content">
+            <h3>Navigate to Settings</h3>
+            <p>Tap the <span class="highlight-gold">gear icon</span> in the top-right corner of the home screen to open Settings.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number s3">3</div>
+        <div class="step-content">
+            <h3>Select "Account"</h3>
+            <p>Scroll down and tap on <span class="highlight-coral">"Account"</span> to view your account management options.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number s4">4</div>
+        <div class="step-content">
+            <h3>Tap "Delete Account"</h3>
+            <p>At the bottom of the Account page, tap <span class="highlight-coral">"Delete Account"</span>. You will be asked to confirm your identity by entering your password.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number s5">5</div>
+        <div class="step-content">
+            <h3>Confirm Deletion</h3>
+            <p>Read the final warning and tap <span class="highlight-coral">"Permanently Delete"</span>. Your account will be deactivated immediately and fully deleted within <span class="highlight-gold">90 days</span>.</p>
+        </div>
+    </div>
+</div>
+
+<!-- What you lose -->
+<div class="loss-card">
+    <h2>What You Will Lose</h2>
+    <div class="loss-grid">
+        <div class="loss-item">
+            <div>
+                <div class="label">All XP & Levels</div>
+                <div class="desc">Your accumulated progress is erased</div>
+            </div>
+        </div>
+        <div class="loss-item">
+            <div>
+                <div class="label">Daily Streaks</div>
+                <div class="desc">Your hard-earned streaks reset to zero</div>
+            </div>
+        </div>
+        <div class="loss-item">
+            <div>
+                <div class="label">Leaderboard Rankings</div>
+                <div class="desc">You will be removed from all leaderboards</div>
+            </div>
+        </div>
+        <div class="loss-item">
+            <div>
+                <div class="label">Badges & Achievements</div>
+                <div class="desc">All earned badges are permanently removed</div>
+            </div>
+        </div>
+        <div class="loss-item">
+            <div>
+                <div class="label">Study Notes</div>
+                <div class="desc">All personal notes and highlights deleted</div>
+            </div>
+        </div>
+        <div class="loss-item">
+            <div>
+                <div class="label">Subscription Access</div>
+                <div class="desc">Premium features end; no refund issued</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Timeline -->
+<div class="timeline-card">
+    <h2>Deletion Timeline</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot blue">0</div>
+            <h4>Immediate — Account Deactivated</h4>
+            <p>Your account is immediately deactivated. You cannot log in, and your profile is hidden from leaderboards and battles.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot gold">30</div>
+            <h4>Day 30 — Grace Period</h4>
+            <p>You can still contact support to <span class="highlight">restore</span> your account if you change your mind within the first 30 days.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot coral">90</div>
+            <h4>Day 90 — Permanent Deletion</h4>
+            <p>All personal data, progress, and content are <span class="highlight-coral">permanently and irreversibly deleted</span> from our servers.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Alternatives -->
+<div class="alt-card">
+    <h2>Not Sure? Consider Alternatives</h2>
+    <p>Before deleting, you might want to try these options instead:</p>
+    <div class="alt-buttons">
+        <a href="mailto:support@hatua.app" class="btn-alt blue">Contact Support</a>
+        <a href="index.html" class="btn-alt gold">Back to Home</a>
+    </div>
+</div>
+
+<!-- Contact -->
+<div class="contact-card">
+    <h2>Need Help?</h2>
+    <p>If you're having trouble deleting your account, or if you no longer have access to the app, you can request account deletion by emailing us directly.</p>
+    <p style="font-size: 13px;">Please include your registered email address and the subject line: <strong>"Delete My Account"</strong></p>
+    <div class="email">support@hatuaapp.co.tz</div>
+</div>
+
+    <footer class="footer">
+        <p> 2026 Hatua Ltd. All rights reserved. &middot; <a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="delete-account.html">Delete Account</a></p>
+    </footer>
+
+</body>
+</html>
